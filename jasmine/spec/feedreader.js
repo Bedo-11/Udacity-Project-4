@@ -32,17 +32,29 @@ $(function() {
          * and that the URL is not empty.
          */
         it('has URL'), function() {
+            allFeeds.forEach(function(feed){
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe(0)
+            })
             expect(allFeeds.url).toBeDefined();
         }
 
 
+        // allFeeds.forEach(function(feed) {
+        //     feed.id = feedId;
+        //     feedList.append(feedItemTemplate(feed));
+    
+        //     feedId++;
+        // });
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
         it('has a name'), function(){
-            expect(allFeeds.name).toBeDefined();
-            expect(allFeeds.name).not.toBe(0);
+            allFeeds.forEach(function(feed){
+                expect(feed.name).toBeDefined()
+                expect(feed.name.length).not.toBe(0)
+            })
         }
     });
 
@@ -97,7 +109,8 @@ $(function() {
         });
 
         it('Not Empty',function(){
-            expect(feed).not.toBe(0)
+            entry = document.querySelector(".entry").children;
+            expect(entry.length).not.toBe(0)
         })
         
 
@@ -106,7 +119,9 @@ $(function() {
             let finalFeed;
     
             beforeEach(function(done) {
-                loadFeed(0, done);
+              let firstfeed = loadFeed(0,done);
+              let secondfeed = loadFeed(1,done);
+
             });
     
             beforeEach(function(done) {
