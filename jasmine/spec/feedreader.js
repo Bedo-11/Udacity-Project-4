@@ -36,7 +36,6 @@ $(function() {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).not.toBe(0)
             })
-            expect(allFeeds.url).toBeDefined();
         }
 
 
@@ -114,9 +113,16 @@ $(function() {
         })
         
 
+        /* TODO: Write a new test suite named "New Feed Selection" */
+
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+
         describe("New Feed Selection", function() {
-            let initialFeed;
-            let finalFeed;
+            let initialFeed = document.querySelector('.feed')
+            let finalFeed   = document.querySelector('.feed')
     
             beforeEach(function(done) {
               let firstfeed = loadFeed(0,done);
@@ -125,17 +131,16 @@ $(function() {
             });
     
             beforeEach(function(done) {
-                initialFeed = $('.feed').html();
+                initialFeed.innerHTML;
                 loadFeed(1, done);
             });
     
             it("changes the content", function(done) {
-                finalFeed = $('.feed').html();
-                expect(finalFeed).not.toBe(initialFeed);
+                finalFeed.innerHTML;
+                expect(finalFeed.children[0]).not.toEqual(initialFeed.children[1]);
                 done();
             });
             }) 
-       
         });
         
 }());
