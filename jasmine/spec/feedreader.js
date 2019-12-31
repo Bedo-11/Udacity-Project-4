@@ -31,12 +31,12 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('has URL'), function() {
+        it('has URL', function() {
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
-                expect(feed.url).not.toBe(0)
+                expect(feed.url.length).not.toBe(0)
             })
-        }
+        });
 
 
         // allFeeds.forEach(function(feed) {
@@ -49,12 +49,12 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('has a name'), function(){
+        it('has a name', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.name).toBeDefined()
                 expect(feed.name.length).not.toBe(0)
             })
-        }
+        })
     });
 
 
@@ -108,7 +108,7 @@ $(function() {
         });
 
         it('Not Empty',function(){
-            entry = document.querySelector(".entry").children;
+            entry = document.querySelector(".feed ").children;
             expect(entry.length).not.toBe(0)
         })
         
@@ -121,8 +121,8 @@ $(function() {
          */
 
         describe("New Feed Selection", function() {
-            let initialFeed = document.querySelector('.feed')
-            let finalFeed   = document.querySelector('.feed')
+            let feed = document.querySelector('.feed')
+            
     
             beforeEach(function(done) {
               let firstfeed = loadFeed(0,done);
@@ -130,14 +130,10 @@ $(function() {
 
             });
     
-            beforeEach(function(done) {
-                initialFeed.innerHTML;
-                loadFeed(1, done);
-            });
     
             it("changes the content", function(done) {
-                finalFeed.innerHTML;
-                expect(finalFeed.children[0]).not.toEqual(initialFeed.children[1]);
+                feed.innerHTML;
+                expect(feed.children[0]).not.toEqual(feed.children[1]);
                 done();
             });
             }) 
