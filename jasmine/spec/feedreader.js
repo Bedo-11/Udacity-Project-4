@@ -108,7 +108,7 @@ $(function() {
         });
 
         it('Not Empty',function(){
-            entry = document.querySelector(".feed ").children;
+            entry = document.querySelectorAll(".feed .entry");
             expect(entry.length).not.toBe(0)
         })
         
@@ -121,19 +121,23 @@ $(function() {
          */
 
         describe("New Feed Selection", function() {
-            let feed = document.querySelector('.feed')
+            
             
     
             beforeEach(function(done) {
-              let firstfeed = loadFeed(0,done);
-              let secondfeed = loadFeed(1,done);
+              loadFeed(0,function(){
+                    loadFeed(1);
+                    done();
+              });
+              
 
             });
     
     
             it("changes the content", function(done) {
+                let feed = document.querySelector('.feed')
                 feed.innerHTML;
-                expect(feed.children[0]).not.toEqual(feed.children[1]);
+                expect(feed.children[0].innerHTML).not.toEqual(feed.children[1].innerHTML);
                 done();
             });
             }) 
