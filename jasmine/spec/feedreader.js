@@ -27,10 +27,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+        
         it('has URL', function() {
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
@@ -93,16 +90,11 @@ $(function() {
 
         
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    
         describe('Initial Entries',function(){
             
         let feed = document.querySelector('.feed')
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+        
         beforeEach(function(done){
             loadFeed(0,done)
         });
@@ -113,21 +105,20 @@ $(function() {
         })
         
 
-        /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        
 
         describe("New Feed Selection", function() {
             
-            
+            let feedAfterFirstLoad;
+            let feedAfterSecondLoad;
     
             beforeEach(function(done) {
               loadFeed(0,function(){
-                    loadFeed(1);
+            feedAfterFirstLoad = document.querySelector('.feed').innerHTML
+                    loadFeed(1,function(){
+                    feedAfterSecondLoad = document.querySelector('.feed').innerHTML
                     done();
+                })    
               });
               
 
@@ -135,9 +126,7 @@ $(function() {
     
     
             it("changes the content", function(done) {
-                let feed = document.querySelector('.feed')
-                feed.innerHTML;
-                expect(feed.children[0].innerHTML).not.toEqual(feed.children[1].innerHTML);
+                expect(feedAfterFirstLoad).not.toEqual(feedAfterSecondLoad);
                 done();
             });
             }) 
